@@ -21,6 +21,19 @@ body{
 
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+
+}
 
 
 
+.acoes{
+    display: flex;
+    justify-content: space-around;
+    
+}
