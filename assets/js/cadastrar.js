@@ -6,18 +6,21 @@ document.querySelector("#botao_cadastrar").addEventListener("click", () => {
     const form = document.querySelector("form")
 
     const tarefa = {
+        id: `id_${new Date().getTime()}`,
         titulo: form.titulo.value,
         descricao: form.descricao.value,
         pontos: form.pontos.value
     }
 
 
-    validar(tarefa)
+    if(validar(tarefa)){
+        salvar(tarefa)
+        console.log("salvando tarefa")
+        console.log(tarefa)
 
-    console.log(tarefa)
-    console.log("salvando tarefa")
-    salvar(tarefa)
+    }
 
+    console(new Date().getTime())
 
 })
 
@@ -25,25 +28,28 @@ document.querySelector("#botao_cadastrar").addEventListener("click", () => {
 
 function validar(tarefa){
     limparErros()
-
+    let aux = true
     if(tarefa.titulo.trim() == ""){
         document.querySelector("#titulo").classList.add("is-error")
         document.querySelector("#titulo_erro").innerText = "O Título é Obrigatório"
         console.log("Titulo é obrigatório")
+        aux = false
     }
     
     if(tarefa.descricao.trim() == "" || tarefa.descricao.length < 10){
         document.querySelector("#descricao").classList.add("is-error")
         document.querySelector("#descricao_erro").innerText = "A Descrição deve ter pelo menos 10 caracteres"
         console.log("Descrição obrigatória")
+        aux = false
     }
 
     if(tarefa.pontos <= 0){
         document.querySelector("#pontos").classList.add("is-error")
         document.querySelector("#pontos_erro").innerText = "Os pontos devem ser maior que zero"
         console.log("Pontuação deve ser maior que zero")
+        aux = false
     }
-
+return aux
 }
 
 function limparErros(){
